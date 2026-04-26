@@ -1,0 +1,109 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<div class="spell-list" th:fragment="spell-list">
+			<div id="sorter">
+				<input id="searchbar" type="text" placeholder="Search..">
+				<span text="Class">Class</span>
+				<select id="class-filters">
+					
+					<option name="none" value="none">none</option>
+					<option name="artificer" value="artificer">Artificer</option>
+					<option name="bard" value="bard">Bard</option>
+					<option name="cleric" value="cleric">Cleric</option>
+					<option name="druid" value="druid">Druid</option>
+					<option name="paladin" value="paladin">Paladin</option>
+					<option name="ranger" value="ranger">Ranger</option>
+					<option name="sorcerer" value="sorcerer">Sorcerer</option>
+					<option name="warlock" value="warlock">Warlock</option>
+					<option name="wizard" value="wizard">Wizard</option>
+				</select>
+				<span text="School">School</span>
+				<select id="school-filters" >
+					<option name="none" value="none" style="color:grey;">none</option>
+					<option name="Abjuration" value="Abjuration">Abjuration</option>
+					<option name="Conjuration1" value="Conjuration">Conjuration</option>
+					<option name="Divination" value="Divination">Divination</option>
+					<option name="Enchantment" value="Enchantment">Enchantment</option>
+					<option name="Evocation" value="Evocation">Evocation</option>
+					<option name="Illusion" value="Illusion">Illusion</option>
+					<option name="Necromancy" value="Necromancy">Necromancy</option>
+					<option name="Transmutation" value="Transmutation">Transmutation</option>
+				</select>
+				<span text="Level">Level</span>
+				<select id="level-filters">
+					<option name="none" value="none">none</option>
+					<option name="0" value="L0">Cantrips</option>
+					<option name="1" value="L1">Level 1</option>
+					<option name="2" value="L2">Level 2</option>
+					<option name="3" value="L3">Level 3</option>
+					<option name="4" value="L4">Level 4</option>
+					<option name="5" value="L5">Level 5</option>
+					<option name="6" value="L6">Level 6</option>
+					<option name="7" value="L7">Level 7</option>
+					<option name="8" value="L8">Level 8</option>
+					<option name="9" value="L9">Level 9</option>
+				</select>
+			</div>
+			
+			<div class="card-category" name="L0">
+				<h3>Cantrips</h3>
+				<div name="Cantrips" class="row"  th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L1">
+				<h3>Level 1</h3>
+				<div name="Level 1" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L2">
+				<h3>Level 2</h3>
+				<div name="Level 2" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L3">
+				<h3>Level 3</h3>
+				<div name="Level 3" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L4">
+				<h3>Level 4</h3>
+				<div name="Level 4" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L5">
+				<h3>Level 5</h3>
+				<div name="Level 5" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L6">
+				<h3>Level 6</h3>
+				<div name="Level 6" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L7">
+				<h3>Level 7</h3>
+				<div name="Level 7" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L8">
+				<h3>Level 8</h3>
+				<div name="Level 8" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<div class="card-category" name="L9">
+				<h3>Level 9</h3>
+				<div name="Level 9" class="row" th:insert="~{fragments/spellcard :: spellcard}">
+					
+				</div>
+			</div>
+			<script src="spell-list-search.js" defer></script>
+		</div>

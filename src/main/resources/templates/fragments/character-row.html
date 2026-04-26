@@ -1,0 +1,9 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<tr th:fragment="character-row" class="character-row" th:object="${character}">
+    <td name="character-id" th:text="*{character_id}" hidden= ></td>
+    <td name="character-name" ><a th:href="@{/character/character-sheet(id=*{character_id})}" th:text="*{name}"></a></td>
+    <td name="character-level" th:text="*{level}"></td>
+    <td name="character-class" th:text="*{character_class}"></td>
+    <td name="character-campaign" th:text="*{campaign}"></td>
+</tr>

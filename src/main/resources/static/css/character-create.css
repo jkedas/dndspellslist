@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+form.character-create {
+  width: 800px;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+form.character-create header {
+  display: flex;
+  align-content: stretch;
+  align-items: stretch;
+}
+form.character-create header section.charname {
+  border: 1px solid black;
+  border-right: 0;
+  border-radius: 10px 0 0 10px;
+  padding: 5px 0;
+  background-color: #eee;
+  width: 30%;
+  display: flex;
+  flex-direction: column-reverse;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+}
+form.character-create header section.charname input {
+  padding: 0.5em;
+  margin: 5px;
+  border: 0;
+}
+form.character-create header section.charname label {
+  padding-left: 1em;
+}
+form.character-create header section.misc {
+  width: 70%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+form.character-create header section.misc ul {
+  padding: 10px 0px 5px 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+form.character-create header section.misc ul li {
+  width: 33.33333%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+form.character-create header section.misc ul li label {
+  margin-bottom: 5px;
+}
+form.character-create header section.misc ul li input {
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.scores {
+	display: flex;
+	flex-direction: vertical;
+	padding-bottom: 5px;
+}
+
+.scores > ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+}
+
+.scores > ul > li {
+	height: 80px;
+	width: 70px;
+	background-color: white;
+	border: 1px solid black;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	margin-right: 10px;
+}
+
+.scores ul li div label {
+	font-size: 12px;
+	font-weight: bold;
+}
+.scores ul li div input {
+	text-align: center;
+	width: 90%;
+	height: 50px;
+	border: 0;
+	font-size: 20px;
+	padding: 2px 0px 0px 0px;
+	margin-bottom: 1px;	
+	background: white;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

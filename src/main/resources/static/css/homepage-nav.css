@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#home-navbar {
+	background-color: red;
+}
+
+.nav-item.active {
+	color:red;
+	border-style: solid;
+	border-color: red;
+	border-width: 0 0 1px 0;
+}
+
+#character-sheet.active {
+	color:red;
+	border-style: solid;
+	border-color: red;
+	border-width: 0 0 1px 0;
+}

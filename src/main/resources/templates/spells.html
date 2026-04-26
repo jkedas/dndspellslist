@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+	<meta charset="UTF-8">
+	<title>D&d Helper</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+	<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css}">
+	<link href="/css/styles.css" rel="stylesheet"></link>
+	<link href="/css/homepage-nav.css" rel="stylesheet"></link>
+	<link rel="stylesheet" th:href="@{/css/spellcard.css}" >
+	<link rel="stylesheet" th:href="@{/css/spell-list.css}" >
+
+</head>
+<body>
+	<div th:replace="~{fragments/homepage-nav :: homepage-nav(current='spells')}"></div>
+	<div class="spell-list row">
+			<div class="col-1"></div>
+			<div name="Spell list window" class="col-10 content-window">
+				<h2>Spells</h2>
+				<div>
+					<div class='level-nav-container'>
+						<ul class="level-nav nav" >
+							<li value="0" class="active">
+								<button><em>Cantrip</em></button>
+							</li>
+							<li value="1" class="">
+								<button><em>Level 1</em></button>
+							</li>
+							<li value="2" class="">
+								<button><em>Level 2</em></button>
+							</li>
+							<li value="3" class="">
+								<button><em>Level 3</em></button>
+							</li>
+							<li value="4" class="">
+								<button><em>Level 4</em></button>
+							</li>
+							<li value="5" class="">
+								<button><em>Level 5</em></button>
+							</li>
+							<li value="6" class="">
+								<button><em>Level 6</em></button>
+							</li>
+							<li value="7" class="">
+								<button><em>Level 7</em></button>
+							</li>
+							<li value="8" class="">
+								<button><em>Level 8</em></button>
+							</li>
+							<li value="9" class="">
+								<button><em>Level 9</em></button>
+							</li>
+						</ul>
+					</div>
+					<span name="class-filters" class="">
+						<span text="Class">Class Filter</span>
+						<select id="class-filters">
+							
+							<option name="none" value="none">none</option>
+							<option name="bard" value="bard">Bard</option>
+							<option name="cleric" value="cleric">Cleric</option>
+							<option name="druid" value="druid">Druid</option>
+							<option name="paladin" value="paladin">Paladin</option>
+							<option name="ranger" value="ranger">Ranger</option>
+							<option name="sorcerer" value="sorcerer">Sorcerer</option>
+							<option name="warlock" value="warlock">Warlock</option>
+							<option name="wizard" value="wizard">Wizard</option>
+						</select>
+					</span>
+				</div>
+
+				<div name="Spells" class="spell-list row">
+					<table value='0' class="cantrips spell-table">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${cantrip_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=1 class="first-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${one_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=2 class="second-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${two_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=3 class="third-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${three_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=4 class="fourth-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${four_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=5 class="fifth-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${five_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=6 class="sixth-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${six_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=7 class="seventh-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${seven_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=8 class="eighth-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${eight_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+					<table value=9 class="ninth-level spell-table" style="display: none">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">School</th>
+								<th scope="col">Casting Time</th>
+								<th scope="col">Range</th>
+								<th scope="col">Duration</th>
+								<th scope="col">Components</th>
+							</tr>
+						</thead>
+						<tbody th:each="spell: ${nine_list}" th:insert='~{fragments/spell-row :: basic}'>
+						</tbody>
+					</table>
+				</div>
+				<div name="Spell Cards">
+					<div th:each="spell : ${cantrip_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${one_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${two_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${three_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${four_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${five_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${six_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${seven_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${eight_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+					<div th:each="spell : ${nine_list}" th:insert="~{fragments/spellcard :: spellcard-popup}" th:remove="tag"></div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<footer><br></footer>
+	<script src="/js/spell-list.js" defer></script>
+	<script src="/js/spelllist-search.js" defer></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

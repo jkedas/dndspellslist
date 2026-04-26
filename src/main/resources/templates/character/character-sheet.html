@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Character Sheet</title>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+ 	<link href="/css/styles.css" rel="stylesheet"></link>
+	<link href="/css/homepage-nav.css" rel="stylesheet"></link>
+	<link href="/css/character_sheet_style.css" rel="stylesheet"></link>
+	
+  
+</head>
+<body>
+ 	<div th:replace="~{fragments/character-nav :: character-nav(current='character-sheet')}"></div>
+ 
+	<form id="page1" class="charsheet" th:action="@{/update-character}" th:object="${character}" method="post">
+		<button type="submit">Save</button>
+	  <header>
+	    <section class="charname">
+	      <input name="user_id" th:field="*{user}" hidden=/>
+	      <input name="character_id" th:field="*{character_id}" hidden=/>
+	      <label for="charname">Character Name</label><input name="charname" placeholder="Who dis?" th:field="*{name}"/>
+	    </section>
+	    <section class="misc">
+	      <ul>
+	        <li>
+	          <label for="classlevel">Class & Level</label><div><span style="width:30%;">Level </span><input name="level" placeholder="1" th:field="*{level}" style="width:15%;text-align:right;margin-right:10px;"/><input name="class" placeholder="Class" th:field="*{character_class}"/></div>
+	        </li>
+	        <li>
+	          <label for="background">Background</label><input name="background" placeholder="Acolyte" th:field="*{background}"/>
+	        </li>
+	        <li>
+	          <label for="playername">Player Name</label><input name="playername" placeholder="Player McPlayerface" >
+	        </li>
+	        <li>
+	          <label for="race">Race</label><input name="race" placeholder="Half-elf" th:field="*{race}"/>
+	        </li>
+	        <li>
+	          <label for="alignment">Alignment</label><input name="alignment" placeholder="Lawful Good" th:field="*{alignment}"/>
+	        </li>
+	        <li>
+	          <label for="experiencepoints">Experience Points</label><input name="experiencepoints" placeholder="3240" />
+	        </li>
+	      </ul>
+	    </section>
+	  </header>
+	  <main>
+	    <section>
+	      <section class="attributes">
+	        <div class="scores">
+	        	<th:block th:replace="~{fragments/character-sheet/stats :: core-stats(character)}">
+	        </div>
+	        <div class="attr-applications" style="margin-right: -10px;">
+	          <div class="inspiration box">
+	            <div class="label-container">
+	              <label for="inspiration">Inspiration</label>
+	            </div>
+	            <input id="ins1" name="inspiration" type="button" value="wow" style="font-size : 1px;" />
+	          </div>
+	          <div class="proficiencybonus box">
+	            <div class="label-container">
+	              <label for="proficiencybonus">Proficiency Bonus</label>
+	            </div>
+	            <input name="proficiencybonus" placeholder="+2" readonly/>
+	          </div>
+	          <div class="saves list-section box" >
+	            <ul>
+	              <li>
+	                <label for="Strength-save">Strength</label><input name="Strength-save" class="str" placeholder="+0" type="text" readonly/><input name="Strength-save-prof" class="str" type="checkbox" data-score="st" th:field="*{strength_save}"/>
+	              </li>
+	              <li>
+	                <label for="Dexterity-save">Dexterity</label><input name="Dexterity-save" class="dex" placeholder="+0" type="text" readonly/><input name="Dexterity-save-prof" class="dex" type="checkbox" data-score="dex" th:field="*{dexterity_save}"/>
+	              </li>
+	              <li>
+	                <label for="Constitution-save">Constitution</label><input name="Constitution-save" class="con" placeholder="+0" type="text" readonly/><input name="Constitution-save-prof" class="con" type="checkbox" data-score="con" th:field="*{constitution_save}"/>
+	              </li>
+	              <li>
+	                <label for="Wisdom-save">Wisdom</label><input name="Wisdom-save" placeholder="+0" class="wis" type="text" readonly/><input name="Wisdom-save-prof" class="wis" type="checkbox" data-score="wis" th:field="*{wisdom_save}"/>
+	              </li>
+	              <li>
+	                <label for="Intelligence-save">Intelligence</label><input name="Intelligence-save" class="int" placeholder="+0" type="text" readonly/><input name="Intelligence-save-prof" class="int" type="checkbox" data-score="int" th:field="*{intelligence_save}"/>
+	              </li>
+	              <li>
+	                <label for="Charisma-save">Charisma</label><input name="Charisma-save" class="cha" placeholder="+0" type="text" readonly/><input name="Charisma-save-prof" type="checkbox" class="cha" data-score="cha" th:field="*{charisma_save}"/>
+	              </li>
+	            </ul>
+	            <div class="label">
+	              Saving Throws
+	            </div>
+	          </div>
+	          <div class="skills list-section box">
+	            <ul>
+	              <li>
+	                <label for="Acrobatics">Acrobatics <span class="skill">(Dex)</span></label><input name="Acrobatics mod" class="dex" placeholder="+0" type="text" readonly/><input name="Acrobatics-prof" class="dex" type="checkbox" data-score="dex" th:field="*{acrobatics}"/>
+	              </li>
+	              <li>
+	                <label for="Animal Handling">Animal Handling <span class="skill">(Wis)</span></label><input name="Animal Handling mod" class="wis" placeholder="+0" type="text" readonly/><input name="Animal Handling-prof" class="wis" type="checkbox" data-score="wis" th:field="*{animal_handling}"/>
+	              </li>
+	              <li>
+	                <label for="Arcana">Arcana <span class="skill">(Int)</span></label><input name="Arcana mod" class="int" placeholder="+0" type="text" readonly/><input name="Arcana-prof" class="int" type="checkbox" data-score="int" th:field="*{arcana}"/>
+	              </li>
+	              <li>
+	                <label for="Athletics">Athletics <span class="skill">(Str)</span></label><input name="Athletics mod" class="str" placeholder="+0" type="text" readonly/><input name="Athletics-prof" class="str" type="checkbox" data-score="str" th:field="*{athletics}"/>
+	              </li>
+	              <li>
+	                <label for="Deception">Deception <span class="skill">(Cha)</span></label><input name="Deception mod" class="cha" placeholder="+0" type="text" readonly/><input name="Deception-prof" class="cha" type="checkbox" data-score="cha" th:field="*{deception}"/>
+	              </li>
+	              <li>
+	                <label for="History">History <span class="skill">(Int)</span></label><input name="History mod" class="int" placeholder="+0" type="text" readonly/><input name="History-prof" class="int" type="checkbox" data-score="int" th:field="*{history}"/>
+	              </li>
+	              <li>
+	                <label for="Insight">Insight <span class="skill">(Wis)</span></label><input name="Insight mod" class="wis" placeholder="+0" type="text" readonly/><input name="Insight-prof" class="wis" type="checkbox" data-score="wis" th:field="*{insight}"/>
+	              </li>
+	              <li>
+	                <label for="Intimidation">Intimidation <span class="skill">(Cha)</span></label><input name="Intimidation mod" class="cha" placeholder="+0" type="text" readonly/><input name="Intimidation-prof" class="cha" type="checkbox" data-score="cha" th:field="*{intimidation}"/>
+	              </li>
+	              <li>
+	                <label for="Investigation">Investigation <span class="skill">(Int)</span></label><input name="Investigation mod" class="int" placeholder="+0" type="text" readonly/><input name="Investigation-prof" class="int" type="checkbox" data-score="int" th:field="*{investigation}"/>
+	              </li>
+	              <li>
+	                <label for="Medicine">Medicine <span class="skill">(Wis)</span></label><input name="Medicine mod" class="wis" placeholder="+0" type="text" readonly/><input name="Medicine-prof" class="wis" type="checkbox" data-score="wis" th:field="*{medicine}"/>
+	              </li>
+	              <li>
+	                <label for="Nature">Nature <span class="skill">(Int)</span></label><input name="Nature mod" class="int" placeholder="+0" type="text" readonly/><input name="Nature-prof" class="int" type="checkbox" data-score="int" th:field="*{nature}"/>
+	              </li>
+	              <li>
+	                <label for="Perception">Perception <span class="skill">(Wis)</span></label><input name="Perception mod" class="wis" placeholder="+0" type="text" readonly/><input name="Perception-prof" class="wis" type="checkbox" data-score="wis" th:field="*{perception}"/>
+	              </li>
+	              <li>
+	                <label for="Performance">Performance <span class="skill">(Cha)</span></label><input name="Performance mod" class="cha" placeholder="+0" type="text" readonly/><input name="Performance-prof" class="cha" type="checkbox" data-score="cha" th:field="*{performance}"/>
+	              </li>
+	              <li>
+	                <label for="Persuasion">Persuasion <span class="skill">(Cha)</span></label><input name="Persuasion mod" class="cha" placeholder="+0" type="text" readonly/><input name="Persuasion-prof" class="cha" type="checkbox" data-score="cha" th:field="*{persuasion}"/>
+	              </li>
+	              <li>
+	                <label for="Religion">Religion <span class="skill">(Int)</span></label><input name="Religion mod" class="int" placeholder="+0" type="text" readonly/><input name="Religion-prof" class="int" type="checkbox" data-score="int" th:field="*{religion}"/>
+	              </li>
+	              <li>
+	                <label for="Sleight of Hand">Sleight of Hand <span class="skill">(Dex)</span></label><input name="Sleight of Hand mod" class="dex" placeholder="+0" type="text" readonly/><input name="Sleight of Hand-prof" class="dex" type="checkbox" data-score="dex" th:field="*{sleight_of_hand}"/>
+	              </li>
+	              <li>
+	                <label for="Stealth">Stealth <span class="skill">(Dex)</span></label><input name="Stealth mod" class="dex" placeholder="+0" type="text" readonly/><input name="Stealth-prof" class="dex" type="checkbox" data-score="dex" th:field="*{stealth}"/>
+	              </li>
+	              <li>
+	                <label for="Survival">Survival <span class="skill">(Wis)</span></label><input name="Survival mod" class="wis" placeholder="+0" type="text" readonly/><input name="Survival-prof" class="wis" type="checkbox"  data-score="wis" th:field="*{survival}"/>
+	              </li>
+	            </ul>
+	            <div class="label">
+	              Skills
+	            </div>
+	          </div>
+	        </div>
+	      </section>
+	      <div class="passive-perception box">
+	        <div class="label-container">
+	          <label for="passiveperception">Passive Wisdom (Perception)</label>
+	        </div>
+	        <input name="passiveperception" class="dex" placeholder="10" data-score="wis" readonly/>
+	      </div>
+	      <div class="otherprofs box textblock">
+	        <label for="otherprofs">Other Proficiencies and Languages</label><textarea name="otherprofs" th:field="*{proficiencies_languages}"></textarea>
+	      </div>
+	    </section>
+	    <section>
+	      <section class="combat">
+	        <div class="armorclass">
+	          <div>
+	            <label for="ac">Armor Class</label><input name="ac" placeholder="10" type="text" data-score="dex" th:field="*{armor_class}"/>
+	          </div>
+	        </div>
+	        <div class="initiative">
+	          <div>
+	            <label for="initiative">Initiative</label><input name="initiative" class="dex" placeholder="+0" type="text" data-score="dex" readonly/>
+	          </div>
+	        </div>
+	        <div class="speed">
+	          <div>
+	            <label for="speed">Speed</label><input name="speed" placeholder="30" type="text" th:field="*{speed}"/>
+	          </div>
+	        </div>
+	        <div class="hp">
+	          <div class="regular">
+	            <div class="max">
+	              <label for="maxhp">HP Max</label><input name="maxhp" placeholder="10" type="text" th:field="*{max_hp}"/>
+	            </div>
+	            <div class="current">
+	              <label for="currenthp">Current Hit Points</label><input name="currenthp" type="text" th:field="*{current_hp}"/>
+	            </div>
+	          </div>
+	          <div class="temporary">
+	            <label for="temphp">Temporary Hit Points</label><input name="temphp" type="text" th:field="*{temporary_hp}"/>
+	          </div>
+	        </div>
+	        <div class="hitdice">
+	          <div>
+	            <div class="total">
+	              <label for="totalhd">Total</label><input name="totalhd" placeholder="2d10" type="text" th:field="*{hit_dice}"/>
+	            </div>
+	            <div class="remaining">
+	              <label for="remaininghd">Hit Dice</label><input name="remaininghd" type="text" th:field="*{current_hit_dice}"/>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="deathsaves">
+	          <div>
+	            <div class="label">
+	              <label>Death Saves</label>
+	            </div>
+	            <div class="marks">
+	              <div class="deathsuccesses">
+	                <label>Successes</label>
+	                <div class="bubbles">
+	                  <input name="deathsuccess1" type="checkbox" />
+	                  <input name="deathsuccess2" type="checkbox" />
+	                  <input name="deathsuccess3" type="checkbox" />
+	                </div>
+	              </div>
+	              <div class="deathfails">
+	                <label>Failures</label>
+	                <div class="bubbles">
+	                  <input name="deathfail1" type="checkbox" />
+	                  <input name="deathfail2" type="checkbox" />
+	                  <input name="deathfail3" type="checkbox" />
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
+	      <section class="attacksandspellcasting">
+	        <div>
+	          <label>Attacks, Actions and Cantrips</label>
+	          <table>
+	            <thead>
+	              <tr>
+	                <th>
+	                  Weapon/Cantrip
+	                </th>
+	                <th>
+	                  Hit
+	                </th>
+	                <th>
+	                  Damage/Type
+	                </th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>
+	                  <input name="atkname1" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkbonus1" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkdamage1" type="text" />
+	                </td>
+	              </tr>
+	              <tr>
+	                <td>
+	                  <input name="atkname2" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkbonus2" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkdamage2" type="text" />
+	                </td>
+	              </tr>
+	              <tr>
+	                <td>
+	                  <input name="atkname3" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkbonus3" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkdamage3" type="text" />
+	                </td>
+	              </tr>
+	               <tr>
+	                <td>
+	                  <input name="atkname4" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkbonus4" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkdamage4" type="text" />
+	                </td>
+	              </tr>
+	               <tr>
+	                <td>
+	                  <input name="atkname5" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkbonus5" type="text" />
+	                </td>
+	                <td>
+	                  <input name="atkdamage5" type="text" />
+	                </td>
+	              </tr>
+	            </tbody>
+	          </table>
+	          <textarea></textarea>
+	        </div>
+	      </section>
+	        
+	    </section>
+	    <section>
+	      <section class="flavor">
+	        <div class="personality">
+	          <label for="personality">Personality</label><textarea name="personality" th:field="*{personality}"></textarea>
+	        </div>
+	        <div class="ideals">
+	          <label for="ideals">Ideals</label><textarea name="ideals" th:field="*{ideals}"></textarea>
+	        </div>
+	        <div class="bonds">
+	          <label for="bonds">Bonds</label><textarea name="bonds" th:field="*{bonds}"></textarea>
+	        </div>
+	        <div class="flaws">
+	          <label for="flaws">Flaws</label><textarea name="flaws" th:field="*{flaws}"></textarea>
+	        </div>
+	      </section>
+	      <section class="features">
+	        <div>
+	          <label for="features">Features & Traits</label><textarea name="features"  th:field="*{features_traits}"></textarea>
+	        </div>
+	      </section>
+	    </section>  
+	    <section class="equipment">
+	        <div>
+	          <label>Equipment</label>
+	          <div class="money">
+	            <ul>
+	              <li>
+	                <label for="cp">cp</label><input name="cp" th:field="*{copper}"/>
+	              </li>
+	              <li>
+	                <label for="sp">sp</label><input name="sp" th:field="*{silver}"/>
+	              </li>
+	              <li>
+	                <label for="ep">ep</label><input name="ep" th:field="*{electrum}"/>
+	              </li>
+	              <li>
+	                <label for="gp">gp</label><input name="gp" th:field="*{gold}"/>
+	              </li>
+	              <li>
+	                <label for="pp">pp</label><input name="pp" th:field="*{platinum}"/>
+	              </li>
+	            </ul>
+	          </div>
+	          <div style="width: 44%; margin-left: 5px">
+	            <table class="items" id="equipment1">
+	              <thead>
+	                <tr>
+	                  <th style="font-size: 12px; color: #bbb ">
+	                    Name
+	                  </th>
+	                  <th style="font-size: 12px; color: #bbb ">
+	                    Qty
+	                  </th>
+	                  <th style="font-size: 12px; color: #bbb ">
+	                    Weight
+	                  </th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e1" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq1" type="text" />
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew1" type="text" />
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e2" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq2" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew2" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e3" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq3" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew3" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e4" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq4" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew4" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e5" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq5" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew5" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e6" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq6" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew6" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e7" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq7" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew7" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e8" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq8" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew8" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e9" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq9" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew9" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e10" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq10" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew10" type="text"/>
+	                  </td>
+	                </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	
+	          <div style="width: 44%; margin-left: 5px">
+	            <table class="items" id="equipment2">
+	            <thead>
+	              <tr>
+	                <th style="font-size: 12px; color: #bbb ">
+	                  Name
+	                </th>
+	                <th style="font-size: 12px; color: #bbb ">
+	                  Quantity
+	                </th>
+	                <th style="font-size: 12px; color: #bbb ">
+	                  Weight
+	                </th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                  <td class="en">
+	                    <input name="e1" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq1" type="text" />
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew1" type="text" />
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e2" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq2" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew2" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e3" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq3" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew3" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e4" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq4" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew4" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e5" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq5" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew5" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e6" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq6" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew6" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e7" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq7" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew7" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e8" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq8" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew8" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e9" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq9" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew9" type="text"/>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td class="en">
+	                    <input name="e10" type="text" />
+	                  </td>
+	                  <td class="eq">
+	                    <input name="eq10" type="text"/>
+	                  </td>
+	                  <td class="ew">
+	                    <input name="ew10" type="text"/>
+	                  </td>
+	                </tr>
+	            </tbody>
+	          </table>
+	
+	          </div>
+	        </div>
+	      </section>
+	      
+	      <section class="adds">
+	        <div>
+	          <label for="adds">Character Backstory and Appearance</label><textarea name="backstory" placeholder="How did you get here?" th:field="*{backstory_appearance}"></textarea>
+	        </div>
+	      </section>
+	      
+	      
+	  </main>
+<div th:if="${errorMessage}" class="alert alert-danger" role="alert" style="max-width: 600px; margin: 15px auto;">
+			<span th:text="${errorMessage}"></span>
+		</div>	
+	</form>
+
+<script src="/js/character-sheet.js"></script>
+</body>
+
+</html>
+ 

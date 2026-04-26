@@ -1,0 +1,56 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<ul th:fragment="core-stats(character)">
+  <li>
+    <div class="score">
+      <label for="Strengthscore">Strength</label><input name="Strengthscore" class="str" placeholder="10" th:field="*{strength}"/>
+    </div>
+    <div class="modifier">
+      <input name="Strengthmod" placeholder="+0" readonly/>
+    </div>
+  </li>
+  <li>
+    <div class="score">
+      <label for="Dexterityscore">Dexterity</label><input name="Dexterityscore" class="dex" placeholder="10" th:field="*{dexterity}"/>
+    </div>
+    <div class="modifier">
+      <input name="Dexteritymod" placeholder="+0" readonly/>
+    </div>
+  </li>
+  <li>
+    <div class="score">
+      <label for="Constitutionscore">Constitution</label><input name="Constitutionscore" class="con" placeholder="10" th:field="*{constitution}"/>
+    </div>
+    <div class="modifier">
+      <input name="Constitutionmod" placeholder="+0" readonly/>
+    </div>
+  </li>
+  <li>
+    <div class="score">
+      <label for="Wisdomscore">Wisdom</label><input name="Wisdomscore" class="wis" placeholder="10" th:field="*{wisdom}"/>
+    </div>
+    <div class="modifier">
+      <input name="Wisdommod" placeholder="+0" readonly/>
+    </div>
+  </li>
+  <li>
+    <div class="score">
+      <label for="Intelligencescore">Intelligence</label><input name="Intelligencescore" class="int" placeholder="10" th:field="*{intelligence}"/>
+    </div>
+    <div class="modifier">
+      <input name="Intelligencemod" placeholder="+0" readonly/>
+    </div>
+  </li>
+  <li>
+    <div class="score">
+      <label for="Charismascore">Charisma</label><input name="Charismascore" class="cha" placeholder="10" th:field="*{charisma}"/>
+    </div>
+    <div class="modifier">
+      <input name="Charismamod" placeholder="+0" readonly/>
+    </div>
+  </li>
+</ul>
+
+
+
+	        

@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+
+
+div > h2 {
+	border-style: solid;
+	border-width: 0 0 3px 0;
+	border-color: #6a1d1d;
+}
+
+div.content-window {
+	display: block;
+	align-content: center;
+	margin-left: 10%;
+	margin-top: 5%;
+	padding: 10px;
+	
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;	
+}
+
+table {
+	margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+tbody {
+	display: table-row-group;
+    border-color: inherit;
+}
+
+tr {
+	display: table-row;
+    height: 40px;
+    margin: 2px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #6a1d1d;
+    
+}
+
+th {
+	background-color: #6a1d1d;
+	color: white;
+}
+
+
+td > button {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+td > button:focus {
+	outline: none;
+	border-style: solid;
+	border-width: 0 0 2px 0;
+	border-color: #6a1d1d;
+}
+
+

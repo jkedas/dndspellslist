@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>D&amp;D Helper</title>
+	
+	<link href="/css/character-create.css" rel="stylesheet"></link>
+</head>
+<body>
+	<div>
+		<form class="character-create" th:action="@{/process-create-character}" th:object="${character}" method="post">
+			  <header>
+	    <section class="charname">
+	      <input name="user_id" th:field="*{user}" hidden=/>
+	      <input name="character_id" th:field="*{character_id}" hidden=/>
+	      <label for="charname">Character Name</label><input name="charname" placeholder="Who dis?" th:field="*{name}"/>
+	    </section>
+	    <section class="misc">
+	      <ul>
+	        <li>
+	          <label for="classlevel">Class &amp; Level</label><input name="class" placeholder="Class" th:field="*{character_class}"/><input name="level" placeholder="Level" th:field="*{level}"/>
+	        </li>
+	        <li>
+	          <label for="background">Background</label><input name="background" placeholder="Acolyte" th:field="*{background}"/>
+	        </li>
+	        <li>
+	          <label for="playername">Player Name</label><input name="playername" placeholder="Player McPlayerface" >
+	        </li>
+	        <li>
+	          <label for="race">Race</label><input name="race" placeholder="Half-elf" th:field="*{race}"/>
+	        </li>
+	        <li>
+	          <label for="alignment">Alignment</label><input name="alignment" placeholder="Lawful Good" th:field="*{alignment}"/>
+	        </li>
+	        <li>
+	          <label for="experiencepoints">Experience Points</label><input name="experiencepoints" placeholder="3240" />
+	        </li>
+	      </ul>
+	    </section>
+	  </header>
+		<main>
+			<section class="scores">
+			<ul>
+				<li>
+					<div class="score">
+						<label>Strength</label>
+						<input class="score" type="text" th:field="*{strength}"/>
+					</div>
+				</li>
+				<li>
+					<div class="score">
+						<label>Dexterity</label>
+						<input class="score" type="text" th:field="*{dexterity}"/>
+					</div>
+				</li>
+				<li>
+					<div class="score">
+						<label>Constitution</label>
+						<input class="score" type="text" th:field="*{constitution}"/>
+					</div>
+				</li>
+				<li>
+					<div class="score">
+						<label>Wisdom</label>
+						<input class="score" type="number" th:field="*{wisdom}"/>
+					</div>
+				</li>
+				<li>
+					<div class="score">
+						<label>Intelligence</label>
+						<input class="score" type="number" th:field="*{intelligence}"/>
+					</div>
+				</li>
+				<li>
+					<div class="score">
+						<label>Charisma</label>
+						<input class="score" type="number" th:field="*{charisma}"/>
+					</div>
+				</li>
+			</ul>
+			</section>
+		</main>
+		<button type="submit">Create</button>
+		</form>
+	</div>
+	
+</body>
+</html>

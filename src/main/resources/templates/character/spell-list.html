@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+	<title>Insert title here</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+	<link href="/css/styles.css" rel="stylesheet"></link>
+	<link href="/css/homepage-nav.css" rel="stylesheet"></link>
+	<link rel="stylesheet" th:href="@{/css/spellcard.css}" >
+	<link rel="stylesheet" th:href="@{/css/spell-list.css}" >
+	<link rel="stylesheet" th:href="@{/css/spell-list-edit.css}" >
+	
+</head>
+<body>
+	<div th:replace="~{fragments/character-nav :: character-nav(current='spell-list')}"></div>
+	
+	<div id="form-container" th:insert="~{fragments/spell-table :: spell-list-form}">
+		
+	</div>
+	
+	
+	<div th:insert="~{fragments/spell-table :: adder}" class="spell-adder-window hidden"></div>
+	
+	
+<script src="/js/spell-list.js" defer></script>
+<script src="/js/spell-list-edit.js" defer></script>
+
+
+</body>
+</html>

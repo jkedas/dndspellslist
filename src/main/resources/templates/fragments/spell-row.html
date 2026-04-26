@@ -1,0 +1,104 @@
+<html xmlns:th="http://thymeleaf.org">
+
+<tr th:fragment="basic" class="spell-row" th:name="${spell.name}">
+	<td name="spell-id" th:text="${spell.getSpell_id()}" hidden=></td>
+	<td name="spell-name"><button><span th:text="${spell.getName()}"></span></button></td>
+	<td name="spell-level" hidden=><span th:text="${spell.getLevel()}"></span></td>
+	<td name="school"><em><span th:text="${spell.getSchool()}"></span></em></td>
+	<td name="casting-time">1 <span th:text="${spell.getCasting_time()}"></span></td>
+	<td name="range"><span th:text="${spell.getSpell_range()}"></span></td>
+	<td name="duration"><span th:text="${spell.getDuration()}"></span></td>
+	<td name="components"><span th:if="${spell.getVerbal() == true}">V </span><span th:if="${spell.getSomatic() == true}">S </span><span th:if="${spell.getMaterial() == true}">M</span></td>
+	<td name="class-list" hidden=>
+		<span th:if="${spell.getBard()}" th:remove="tag">bard</span>
+		<span th:if="${spell.getCleric()}" th:remove="tag">cleric</span>
+		<span th:if="${spell.getDruid()}" th:remove="tag">druid</span>
+		<span th:if="${spell.getPaladin()}" th:remove="tag">paladin</span>
+		<span th:if="${spell.getRanger()}" th:remove="tag">ranger</span>
+		<span th:if="${spell.getSorcerer()}" th:remove="tag">sorcerer</span>
+		<span th:if="${spell.getWarlock()}" th:remove="tag">warlock</span>
+		<span th:if="${spell.getWizard()}" th:remove="tag">wizard</span>
+	</td>
+</tr>
+
+
+<tr th:fragment="add" class="spell-row" th:name="${spell.name}">
+	<td name="spell-id" th:text="${spell.getSpell_id()}" hidden= ></td>
+	<td name="spell-name"><button><span th:text="${spell.getName()}"></span></button></td>
+	<td name="spell-level" hidden=><span th:text="${spell.getLevel()}"></span></td>
+	<td name="school"><em><span th:text="${spell.getSchool()}"></span></em></td>
+	<td name="casting-time">1 <span th:text="${spell.getCasting_time()}"></span></td>
+	<td name="range"><span th:text="${spell.getSpell_range()}"></span></td>
+	<td name="duration"><span th:text="${spell.getDuration()}"></span></td>
+	<td name="components"><span th:if="${spell.getVerbal() == true}">V </span><span th:if="${spell.getSomatic() == true}">S </span><span th:if="${spell.getMaterial() == true}">M</span></td>
+	<td name="add-spell"><button type="button" class="add-spell">add</button>
+	<td name="class-list" hidden=>
+		<span th:if="${spell.getBard()}" th:remove="tag">bard</span>
+		<span th:if="${spell.getCleric()}" th:remove="tag">cleric</span>
+		<span th:if="${spell.getDruid()}" th:remove="tag">druid</span>
+		<span th:if="${spell.getPaladin()}" th:remove="tag">paladin</span>
+		<span th:if="${spell.getRanger()}" th:remove="tag">ranger</span>
+		<span th:if="${spell.getSorcerer()}" th:remove="tag">sorcerer</span>
+		<span th:if="${spell.getWarlock()}" th:remove="tag">warlock</span>
+		<span th:if="${spell.getWizard()}" th:remove="tag">wizard</span>
+	</td>
+</tr>
+
+<tr th:fragment="remove" class="spell-row" th:name="${spell.name}" >
+	<td name="spell-id" th:text="${spell.getId()}" hidden=></td>
+	<td name="spell-name"><button type="button"><span th:text="${spell.getName()}"></span></button></td>
+	<td name="spell-level" hidden=><span th:text="${spell.getLevel()}"></span></td>
+	<td name="school"><em><span th:text="${spell.getSchool()}"></span></em></td>
+	<td name="casting-time">1 <span th:text="${spell.getCasting_time()}"></span></td>
+	<td name="range"><span th:text="${spell.getSpell_range()}"></span></td>
+	<td name="duration"><span th:text="${spell.getDuration()}"></span></td>
+	<td name="components"><span th:if="${spell.getVerbal() == true}">V </span><span th:if="${spell.getSomatic() == true}">S </span><span th:if="${spell.getMaterial() == true}">M</span></td>
+	<td name="remove-spell"><button type="button" class="remove-spell">remove</button></td>
+	<td name="class-list" hidden=>
+		<span th:if="${spell.getBard()}" th:remove="tag">bard</span>
+		<span th:if="${spell.getCleric()}" th:remove="tag">cleric</span>
+		<span th:if="${spell.getDruid()}" th:remove="tag">druid</span>
+		<span th:if="${spell.getPaladin()}" th:remove="tag">paladin</span>
+		<span th:if="${spell.getRanger()}" th:remove="tag">ranger</span>
+		<span th:if="${spell.getSorcerer()}" th:remove="tag">sorcerer</span>
+		<span th:if="${spell.getWarlock()}" th:remove="tag">warlock</span>
+		<span th:if="${spell.getWizard()}" th:remove="tag">wizard</span>
+	</td>
+</tr>
+
+<tr th:fragment="spell-list(spells)" class="spell-row" th:each="spell : ${__spells__}" th:name="${spell.getName()}">
+	<td name="spell-id" style="display:none"><span th:text="${spell.getSpell_id()}"></span><input type="text" th:value="${spell.getSpell_id()}" style="display:none;"/></td>
+	<td name="spell-name"><button type="button"><span th:text="${spell.getName()}"></span></button><input type="text" th:value="${spell.getName()}" style="display:none;"/></td>
+	<td name="spell-level" hidden=><span th:text="${spell.getLevel()}"></span><input type="text" th:value="${spell.getLevel()}" style="display:none;"/></td>
+	<td name="school"><em><span th:text="${spell.getSchool()}"></span></em><input type="text" th:value="${spell.getSchool()}" style="display:none;"/></td>
+	<td name="casting-time"><span th:text="${spell.getCasting_time()}"></span><input type="text" th:value="${spell.getCasting_time()}" style="display:none;"/></td>
+	<td name="range"><span th:text="${spell.getSpell_range()}"></span><input type="text" th:value="${spell.getSpell_range()}" style="display:none;"/></td>
+	<td name="duration"><span th:text="${spell.getDuration()}"></span><input type="text" th:value="${spell.getDuration()}" style="display:none;"/></td>
+	<td name="components"><span th:if="${spell.getVerbal() == true}">V </span><span th:if="${spell.getSomatic() == true}">S </span><span th:if="${spell.getMaterial() == true}">M</span></td>
+	<td name="remove-spell" class="hidden"><button type="button" class="remove-spell">remove</button></td>
+	<td name="class-list" hidden=>
+		<span th:if="${spell.getBard()}" th:remove="tag">bard</span>
+		<span th:if="${spell.getCleric()}" th:remove="tag">cleric</span>
+		<span th:if="${spell.getDruid()}" th:remove="tag">druid</span>
+		<span th:if="${spell.getPaladin()}" th:remove="tag">paladin</span>
+		<span th:if="${spell.getRanger()}" th:remove="tag">ranger</span>
+		<span th:if="${spell.getSorcerer()}" th:remove="tag">sorcerer</span>
+		<span th:if="${spell.getWarlock()}" th:remove="tag">warlock</span>
+		<span th:if="${spell.getWizard()}" th:remove="tag">wizard</span>
+	</td>
+</tr>
+
+
+
+<!--   
+<input type="text" th:field="${spells[__${itemStat.index}__].spell_id}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].name}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].level}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].school}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].casting_time}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].range}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].duration}" style="display:none;"/>
+<input type="text" th:field="${spells[__${itemStat.index}__].material_components}" style="display:none;"/>
+ -->
+
+

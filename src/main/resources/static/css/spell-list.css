@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+div[name="Spell list window"] {
+	display: block;
+	align-content: center;
+	margin-left: 10%;
+	margin-top: 5%;
+	padding: 10px;
+	
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;	
+}
+
+
+.spell-table-navigation {
+	display: inline-block;
+}
+.level-nav-container {
+	display: inline-block;
+
+}
+.level-nav {
+	list-style:none;
+	padding: 0;
+}
+
+.level-nav > li.active > button {
+	background-color: #ed9f9f;
+}
+
+span[name="class-filters"] {
+	text-align: right;
+}
+
+.spell-list {
+	width: 100%;
+	margin: 0;
+}
+
+td {
+	padding-right: 10px;
+}
+td[name="spell-name"] {
+	font-weight: 700;
+}
+
+td[name="spell-name"] button {
+	text-align: left;
+}
+
+.hidden {
+	display: none;
+}
+
+.spell-adder-window {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 999999999999999;
+	background-color: white;
+}
+
+input[name='save spell list'] {
+	color: red;
+}
+
+
+
+
+
